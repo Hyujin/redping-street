@@ -1,4 +1,13 @@
 
+<?php
+
+session_start();
+
+/*if (!isset($_SESSION['loggedin'])) {
+  header('Location: login.html');
+  exit;
+}*/
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,6 +15,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
 
   <title>RedPing</title>
   <meta content="" name="description">
@@ -41,37 +51,59 @@
 
 <body>
 
+
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container">
       <div class="header-container d-flex align-items-center">
-        <div class="logo mr-auto">
-          <h1 class="text-light"><a href="index.html"><span>RedPing</span></a></h1>
-         
+        <div class="logo mr-auto">      
+          <h1 class="text-light"><a href="index.php"><span>RedPing</span></a></h1>
         </div>
+        <?php if(isset($_SESSION['loggedin'])) { ?>
+        
 
         <nav class="nav-menu d-none d-lg-block">
+            
           <ul>
-            <li class="active"><a href="#header">Home</a></li>
-            <li class="disabled"><a href="#about">My pins</a></li>
-            <li><a href="map.html">Map</a></li>
-            <li class="get-started"><a href="login.html">Log in</a></li>
+           <li class="active" style="margin-right: 37vw; padding-left: 10px"> <p>Hello, <?=$_SESSION['name']?>!</p> </li>
+            <li class="active"><a href="index.php">Home</a></li>
+            <li><a href="map.php">Map</a></li>
+            <li class="active"><a href="mypin.php">My Pings</a></li>
+            <li class="get-started"><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
           </ul>
         </nav><!-- .nav-menu -->
+        <?php } else{ ?>
+
+         <nav class="nav-menu d-none d-lg-block">
+
+          <ul>
+            <li  class="active"><a href="index.php">Home</a></li>
+            <li class="active"><a href="map.php">Map</a></li>
+            <li style=" @media (max-width: 768px) { margin: 20px;}" class="get-started"><a href="login.php"><i class="fas fa-sign-out-alt"></i>Log In</a></li>
+            <li style=" @media (max-width: 768px) { margin: 20px;}" class="get-started"><a href="signup.php"><i class="fas fa-sign-out-alt"></i>Sign Up</a></li>
+          </ul>
+        </nav><!-- .nav-menu -->
+        <?php } ?>
+
+
+
+
+
+
       </div><!-- End Header Container -->
     </div>
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
-    <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-      <h1>Plan a safe and fast route</h1>
+    <div style="margin-top: -10vw;" class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
+      <h1 style="color: red">Plan a safe and fast route</h1>
       <h2>It's sunny, have a safe trip</h2>
-      <a href="#pins" class="btn-get-started scrollto">Check street flood update</a>
+      <a href="map.php" class="btn-get-started scrollto">Check street flood update</a>
     </div>
   </section><!-- End Hero -->
 
- 
+
 
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
@@ -90,6 +122,12 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+   <script>
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker.register('/redping/sw.js');
+
+    }
+  </script>
 
 </body>
 

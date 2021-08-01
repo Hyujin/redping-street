@@ -11,6 +11,7 @@ if(isset($_GET['location_id'])){
       $location_id = "<br>location_id not set in GET Method";
  }
 
+/*
 class db_connect{
 
  public $link='';
@@ -35,7 +36,7 @@ class db_connect{
  }
  
 }
-
+*/
 	 $db = mysqli_connect('localhost', 'root', '', 'redping');  
 		if(!$db ) {
 		    die('Could not connect: ' . mysql_error());
@@ -43,21 +44,46 @@ class db_connect{
 
 	$mysqli = new mysqli('localhost', 'root', '', 'redping');	
 
-	$query = "insert into readings set location_id='". $location_id ."', reading='". $reading ."' ";
-	$result = $db->query($query);
+	$query1 = "insert into readings set location_id= '". $location_id ."', reading= '". $reading ."' ";
+  $randomNumber1 = rand(5, 20);
+  $randomNumber2 = rand(0, 5);
+  $randomNumber3 = rand(2, 8);
+
+  $reading2 = $randomNumber1 + $reading;
+  $reading3 = $reading - $randomNumber2;
+  $reading4 = $randomNumber3 + $reading; 
+  
+  //Special case for tower 3
+  if ($reading2<0){
+    $reading2 = 0;
+  }
+
+  $query2 = "insert into readings set location_id= 2, reading= '". $reading2 ."' ";
+  $query3 = "insert into readings set location_id= 3, reading= '". $reading3 ."' ";
+  $query4 = "insert into readings set location_id= 4, reading= '". $reading4 ."' ";
+
+
+	$result1  = $db->query($query1);
+  $result2 = $db->query($query2);
+  $result3 = $db->query($query3);
+  $result4 = $db->query($query4);
+    
   	
  if (
-        mysqli_query($db, $query)){
+      mysqli_query($db, $result1)){
    		echo "New order added successfully\n";
+      echo "Reading:  " . $reading . "<br />";
+      echo "location_id:  ". $location_id . " years old.";
 		    header('Location: httpost.html');
 		} else {
 		    echo "Error: " 
 		    . $array[0] .  "<br>" . mysqli_error($db);
 		    $_SESSION["err_message"]="Something went wrong. Please try again!";
-		    //header('Location: httpost.php'); 
+		    header('Location: httpost.html'); 
 		}
   	echo "Reading:  " . $reading . "<br />";
     echo "location_id:  ". $location_id . " years old.";
 	
 	mysqli_close($db);
+
 ?>

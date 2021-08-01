@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 14, 2021 at 05:53 PM
--- Server version: 10.1.29-MariaDB
--- PHP Version: 7.1.12
+-- Host: localhost
+-- Generation Time: Jul 27, 2021 at 02:03 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -42,9 +41,9 @@ CREATE TABLE `locations` (
 --
 
 INSERT INTO `locations` (`location_id`, `location_street_name`, `location_city`, `latitude`, `longitude`, `adjacent_location_id`) VALUES
-(1, 'J.P. Laurel Avenue', 'Davao', 7.079739, 125.612938, '2,3'),
-(2, 'R Castillo St', 'Davao', 7.097762, 125.638885, '1,3'),
-(3, 'Cabaguio Ave', 'Davao', 7.091183, 125.622513, '1,2');
+(1, 'J.P. Laurel Avenue', 'Davao', 7.150200, 125.659767, '2,3'),
+(2, 'R Castillo St', 'Davao', 7.148060, 125.660744, '1,3'),
+(3, 'Cabaguio Ave', 'Davao', 7.148380, 125.659348, '1,2');
 
 -- --------------------------------------------------------
 
@@ -63,7 +62,9 @@ CREATE TABLE `my_pins` (
 --
 
 INSERT INTO `my_pins` (`location_id`, `user_id`, `time`) VALUES
-(1, 1, '04:23:00');
+(1, 1, '01:00:00'),
+(3, 1, '14:00:00'),
+(2, 4, '06:00:00');
 
 -- --------------------------------------------------------
 
@@ -82,7 +83,9 @@ CREATE TABLE `readings` (
 --
 
 INSERT INTO `readings` (`location_id`, `date_time`, `reading`) VALUES
-(1, '2021-05-14 23:33:00', 25);
+(1, '2021-05-14 23:33:00', 25),
+(2, '2021-07-14 05:26:41', 32),
+(3, '2021-07-14 05:26:41', 12);
 
 -- --------------------------------------------------------
 
@@ -100,7 +103,7 @@ CREATE TABLE `user` (
   `province` varchar(32) NOT NULL,
   `street` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `my_pins` varchar(32) NOT NULL
+  `my_pins` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -108,7 +111,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `first_name`, `middle_name`, `last_name`, `username`, `city`, `province`, `street`, `password`, `my_pins`) VALUES
-(1, 'Ji', 'Soo', 'Park', 'Jihyo', 'Davao', 'Davel del Sur', 'Inigo st.', '123456', '1');
+(1, 'Ji', 'Soo', 'Park', 'Jihyo', 'Davao', 'Davel del Sur', 'Inigo st.', '123456', '1'),
+(4, 'ds', 'ds', 'ds', 'admin', 'as', 'g', 'g', '123456', NULL);
 
 --
 -- Indexes for dumped tables
@@ -146,7 +150,7 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

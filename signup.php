@@ -1,3 +1,6 @@
+<?php 
+include('db.php')
+?>
 
 
 <!DOCTYPE html>
@@ -48,17 +51,17 @@
     <div class="container">
       <div class="header-container d-flex align-items-center">
         <div class="logo mr-auto">
-          <h1 class="text-light"><a href="index.html"><span>RedPing</span></a></h1>
+          <h1 class="text-light"><a href="index.php"><span>RedPing</span></a></h1>
          
         </div>
 
         <nav class="nav-menu d-none d-lg-block">
           <ul>
-            <li class="active"><a href="#header">Home</a></li>
+            <li class="active"><a href="index.php">Home</a></li>
             <li class="disabled"><a href="#about">My pins</a></li>
-            <li><a href="#services">Map</a></li>
+            <li><a href="map.php">Map</a></li>
 
-            <li class="get-started"><a href="login.html">Log in</a></li>
+            <li class="get-started"><a href="login.php">Log in</a></li>
           </ul>
         </nav><!-- .nav-menu -->
       </div><!-- End Header Container -->
@@ -66,10 +69,66 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="login" class="d-flex align-items-center">
+  <section id="register" class="d-flex align-items-center">
     <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-      <h1>Plan a safe and fast route</h1>
-      <h2>It's sunny, have a safe trip</h2>
+      
+    <form class="regform" 
+    style=" padding: 20px;
+            background-color: darkred;
+            color: white;
+            width: 50%;
+
+  "
+
+   method="post" action="db.php">
+     <!-- <?php include('errors.php'); ?> -->
+      <div class="input-group">
+        <label>Username</label>
+        <input type="text" name="username" value="<?php echo $username; ?>">
+      </div>
+      <div style="margin-right: 10px;" class="input-group">
+        <label >First Name</label>
+        <input type="text" name="first_name" value="<?php echo $first_name; ?>">
+      </div>
+      <div class="input-group">
+        <label>Middle Name</label>
+        <input type="text" name="middle_name" value="<?php echo $middle_name; ?>">
+      </div>
+      <div class="input-group">
+        <label>Last Name</label>
+        <input type="text" name="last_name" value="<?php echo $last_name; ?>">
+      </div>
+
+      <div class="input-group">
+        <label>City</label>
+        <input type="text" name="city" value="<?php echo $city; ?>">
+      </div>
+      <div class="input-group">
+        <label>Province</label>
+        <input type="text" name="province" value="<?php echo $province; ?>">
+      </div>
+      <div class="input-group">
+        <label>Street</label>
+        <input type="text" name="street" value="<?php echo $street; ?>">
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" name="password_1">
+      </div>
+      <div class="input-group">
+        <label>Confirm password</label>
+        <input type="password" name="password_2">
+      </div>
+      <div class="input-group">
+        <button type="submit" class="btn" name="reg_user">Register</button>
+      </div>
+      <p>
+        Already a member? <a href="login.php">Sign in</a>
+      </p>
+    </form>
+
+
     </div>
   </section><!-- End Hero -->
 

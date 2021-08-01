@@ -29,10 +29,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #map {
- position: absolute; 
- top: 0; 
- bottom: 0; 
- width: 100%; 
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ width: 100%;
 }
 
 .disabled {
@@ -401,8 +401,8 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero:before {
   content: "";
-  background-image: ("bg_m.jpg");
-  background: grey url("assets/img/bg_m.jpg");
+  background-image: ("../img/bg_m.jpg");
+  background: grey url("../img/bg_m.jpg");
   position: absolute;
   bottom: 0;
   top: 0;
@@ -448,6 +448,14 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid #D0312D;
 }
 
+.regform{
+
+  padding: 20px;
+  background-color: darkred;
+  color: white;
+
+}
+
 @media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
@@ -464,6 +472,10 @@ h1, h2, h3, h4, h5, h6 {
   #hero h1 {
     font-size: 32px;
     line-height: 36px;
+  }
+
+  li{
+    margin: 15px;
   }
 }
 
@@ -711,6 +723,7 @@ section {
   font-weight: 700;
   margin: 0 0 30px 0;
 }
+
 
 .why-us .icon-boxes .icon-box p {
   font-size: 15px;

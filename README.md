@@ -1,1 +1,2 @@
-# redping-street
+# RedPing
+Capstone Project
